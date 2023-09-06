@@ -16,7 +16,8 @@ Call the `bingo_cards.py` script with the name of the config file:
 pipenv run ./bingo_cards.py config.py
 ```
 
-The generated PDF file is called `bingo_cards.pdf`.
+The generated PDF file is called `bingo_cards.pdf` (or use the
+`--output-filename` option to choose something different).
 
 If you want more than the default of 25 cards, there is a `--num-cards` option.
 

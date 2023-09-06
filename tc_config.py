@@ -20,7 +20,7 @@ TEXTS = [
     "Slow down for the captioner",
     "Cat walks across the screen",
     "LT",
-    "You're muted.",
+    "You're on mute.",
     "Kudos",
     "FY23 strategic bets",
     "Color of Money",
