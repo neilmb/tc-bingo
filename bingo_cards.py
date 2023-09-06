@@ -17,8 +17,8 @@ N = 5
 
 def _paragraph(text):
     """Make text into a flowed paragraph."""
-    stylesheet=getSampleStyleSheet()
-    normalStyle = stylesheet['Normal']
+    stylesheet = getSampleStyleSheet()
+    normalStyle = stylesheet["Normal"]
     normalStyle.fontSize = 12
     return Paragraph(text, normalStyle)
 
@@ -38,49 +38,59 @@ def draw_card(canv, config):
     height = (bottom - top) / N
     canv.lines(
         # verticals
-        [ (left + i*width, bottom, left + i*width, top) for i in range(N+1) ] + 
+        [(left + i * width, bottom, left + i * width, top) for i in range(N + 1)]
+        +
         # horizontals
-        [ (left, top + i*height, right, top + i*height) for i in range(N+1)]
+        [(left, top + i * height, right, top + i * height) for i in range(N + 1)]
     )
 
     # texts
     chosen_texts = set()  # don't allow repeated texts
     for i in range(N):
-        box_left = left + i*width + 10
+        box_left = left + i * width + 10
         for j in range(N):
-            box_top = top + j*height + 10
-            if (i,j) == ((N-1)/2, (N-1)/2):
+            box_top = top + j * height + 10
+            if (i, j) == ((N - 1) / 2, (N - 1) / 2):
                 # free space
                 text = config.FREE
             else:
                 text = random.choice(list(set(config.TEXTS).difference(chosen_texts)))
                 chosen_texts.add(text)
             P = _paragraph(text)
-            w, h = P.wrap(width-20, height)
+            w, h = P.wrap(width - 20, height)
             P.drawOn(canv, box_left, box_top - h + 12 + 12)
 
     canv.showPage()
 
 
-def generate_cards(config, num_cards):
+def generate_cards(config, num_cards, output_filename):
     """Generate num_cards random bingo cards in a PDF file."""
     # initialize the PDF file
-    c = Canvas("bingo_cards.pdf", pagesize=letter, bottomup=False)
+    c = Canvas(output_filename, pagesize=letter, bottomup=False)
 
     for i in range(num_cards):
         draw_card(c, config)
     c.save()
 
+
 @click.command()
-@click.argument("config_filename",)
+@click.argument(
+    "config_filename",
+)
 @click.option("--num_cards", "-n", default=25, help="Number of cards to generate")
-def main(config_filename, num_cards):
+@click.option(
+    "--output-filename",
+    "-o",
+    default="bingo_cards.pdf",
+    help="Name of the generated PDF file",
+)
+def main(config_filename, num_cards, output_filename):
     # load the config file as a python module
-    spec = importlib.util.spec_from_file_location('config', config_filename)
+    spec = importlib.util.spec_from_file_location("config", config_filename)
     config = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(config)
 
-    generate_cards(config, num_cards)
+    generate_cards(config, num_cards, output_filename)
 
 
 if __name__ == "__main__":

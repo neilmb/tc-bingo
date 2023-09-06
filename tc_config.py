@@ -10,6 +10,8 @@ FREE = "FOIA"
 # TEXTS is required and cannot be empty. These are the choices
 # that are randomly selected from for each space
 TEXTS = [
+    "Year to date",
+    "Bench",
     "BD",
     "ZScaler",
     "FITARA",
