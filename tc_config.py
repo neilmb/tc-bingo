@@ -1,4 +1,3 @@
-
 """Configuration for team coffee bingo cards."""
 
 # TITLE is required, can be empty, printed on the top of each card."""
@@ -34,6 +33,23 @@ TEXTS = [
     "Inanimate object during cuteness",
     "Cute that is not a dog, a cat, or a human child.",
     "Kudoer self-references the length of their kudo",
-    "Presenter self-references going way long",
+    "Presenter self-references going long",
     "New employee welcomed",
+    "Pet touching person's face or head",
+    "For purposes of inclusion/accessibility",
+    "Self-deprecating comments about body/aging in self-description",
+    "Identifiable bird calls",
+    "Fiscal year",
+    "Unsuccessful screen sharing",
+    "Teeth",
+    "Presenter has 15+ tabs open",
+    "Lo-fi music",
+    "Presenter has so many tabs that no text appears in the tab title",
+    "leverage",
+    "utilize",
+    "realignment",
+    "best serve the org",
+    "apologizing for using too many acronyms",
+    "Alan makes a comment about going over time",
+    "trying to share a single window but showing the whole desktop",
 ]
